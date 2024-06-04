@@ -1,50 +1,55 @@
-var interval;
-var remainingTime;
+let countdown;
+let isRunning = false;
 
-function startCountdown() {
-    var days = parseInt(document.getElementById('days').value) || 0;
-    var hours = parseInt(document.getElementById('hours').value) || 0;
-    var minutes = parseInt(document.getElementById('minutes').value) || 0;
-    var seconds = parseInt(document.getElementById('seconds').value) || 0;
+function startTimer() {
+    if (isRunning) return;
 
-    remainingTime = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
-    updateCountdownDisplay();
+    const days = parseInt(document.getElementById('days').value) || 0;
+    const hours = parseInt(document.getElementById('hours').value) || 0;
+    const minutes = parseInt(document.getElementById('minutes').value) || 0;
+    const seconds = parseInt(document.getElementById('seconds').value) || 0;
 
-    if (interval) {
-        clearInterval(interval);
-    }
+    let totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
 
-    interval = setInterval(function() {
-        remainingTime--;
-        updateCountdownDisplay();
+    if (totalSeconds <= 0) return;
 
-        if (remainingTime <= 0) {
-            clearInterval(interval);
-            document.getElementById("countdown").innerHTML = "Countdown abgelaufen";
+    isRunning = true;
+    countdown = setInterval(() => {
+        if (totalSeconds <= 0) {
+            clearInterval(countdown);
             document.getElementById('alarmSound').play();
+            isRunning = false;
+        } else {
+            totalSeconds--;
+            updateDisplay(totalSeconds);
         }
     }, 1000);
 }
 
-function stopCountdown() {
-    clearInterval(interval);
+function stopTimer() {
+    clearInterval(countdown);
+    isRunning = false;
 }
 
-function resetCountdown() {
-    clearInterval(interval);
+function resetTimer() {
+    clearInterval(countdown);
+    isRunning = false;
     document.getElementById('days').value = '';
     document.getElementById('hours').value = '';
     document.getElementById('minutes').value = '';
     document.getElementById('seconds').value = '';
-    document.getElementById("countdown").innerHTML = '';
+    document.getElementById('display').textContent = '00:00:00:00';
 }
 
-function updateCountdownDisplay() {
-    var days = Math.floor(remainingTime / (24 * 60 * 60));
-    var hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
-    var minutes = Math.floor((remainingTime % (60 * 60)) / 60);
-    var seconds = remainingTime % 60;
+function updateDisplay(totalSeconds) {
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
-    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
+    document.getElementById('display').textContent =
+        String(days).padStart(2, '0') + ':' +
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
 }
