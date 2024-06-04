@@ -8,6 +8,7 @@
 </head>
 <body>
     <script src='main.js'></script>
+    <audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
 
     <h1>Countdown Timer</h1>
     <div id="controls">
@@ -15,11 +16,14 @@
         <input type="number" id="hours" placeholder="Stunden" min="0" max="23">
         <input type="number" id="minutes" placeholder="Minuten" min="0" max="59">
         <input type="number" id="seconds" placeholder="Sekunden" min="0" max="59">
+    </div>
+    <div id="buttons">
         <button onclick="startCountdown()">Start</button>
         <button onclick="stopCountdown()">Stopp</button>
         <button onclick="resetCountdown()">Reset</button>
     </div>
     <div id="countdown"></div>
+    
 
     
    

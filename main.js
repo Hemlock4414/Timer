@@ -21,6 +21,7 @@ function startCountdown() {
         if (remainingTime <= 0) {
             clearInterval(interval);
             document.getElementById("countdown").innerHTML = "Countdown abgelaufen";
+            document.getElementById('alarmSound').play();
         }
     }, 1000);
 }
