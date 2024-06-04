@@ -52,3 +52,9 @@ button:hover {
     font-size: 2em;
     margin-top: 20px;
 }
+#message {
+    display: none;
+    font-size: 1.5em;
+    color: #e74c3c;
+    margin-top: 20px;
+}

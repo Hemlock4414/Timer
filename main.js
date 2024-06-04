@@ -19,6 +19,7 @@ function startTimer() {
             clearInterval(countdown);
             document.getElementById('alarmSound').play();
             isRunning = false;
+            document.getElementById('message').style.display = 'block';
         } else {
             totalSeconds--;
             updateDisplay(totalSeconds);
@@ -39,6 +40,7 @@ function resetTimer() {
     document.getElementById('minutes').value = '';
     document.getElementById('seconds').value = '';
     document.getElementById('display').textContent = '00:00:00:00';
+    document.getElementById('message').style.display = 'none';
 }
 
 function updateDisplay(totalSeconds) {
