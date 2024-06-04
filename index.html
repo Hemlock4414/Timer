@@ -9,20 +9,19 @@
 <body>
     <script src='main.js'></script>
 
-    <div class="timer">
-        <input id="days" type="number" placeholder="Tage">
-        <input id="hours" type="number" placeholder="Stunden">
-        <input id="minutes" type="number" placeholder="Minuten">
-        <input id="seconds" type="number" placeholder="Sekunden">
-        <button onclick="startTimer()">Start</button>
-        <button onclick="resetTimer()">Reset</button>
-        <button onclick="stopTimer()">Stop</button>
-        <p id="timer"></p>
-      </div>
+    <h1>Countdown Timer</h1>
+    <div id="controls">
+        <input type="number" id="days" placeholder="Tage" min="0">
+        <input type="number" id="hours" placeholder="Stunden" min="0" max="23">
+        <input type="number" id="minutes" placeholder="Minuten" min="0" max="59">
+        <input type="number" id="seconds" placeholder="Sekunden" min="0" max="59">
+        <button onclick="startCountdown()">Start</button>
+        <button onclick="stopCountdown()">Stopp</button>
+        <button onclick="resetCountdown()">Reset</button>
+    </div>
+    <div id="countdown"></div>
+
+    
    
-    
-
-
-    
 </body>
 </html>

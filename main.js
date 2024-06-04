@@ -1,41 +1,49 @@
-let timer;
-let totalTime = 0;
+var interval;
+var remainingTime;
 
-function startTimer() {
-  let days = document.getElementById('days').value || 0;
-  let hours = document.getElementById('hours').value || 0;
-  let minutes = document.getElementById('minutes').value || 0;
-  let seconds = document.getElementById('seconds').value || 0;
-  
-  totalTime = (days * 86400) + (hours * 3600) + (minutes * 60) + seconds;
-  
-  timer = setInterval(updateTimer, 1000);
+function startCountdown() {
+    var days = parseInt(document.getElementById('days').value) || 0;
+    var hours = parseInt(document.getElementById('hours').value) || 0;
+    var minutes = parseInt(document.getElementById('minutes').value) || 0;
+    var seconds = parseInt(document.getElementById('seconds').value) || 0;
+
+    remainingTime = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
+    updateCountdownDisplay();
+
+    if (interval) {
+        clearInterval(interval);
+    }
+
+    interval = setInterval(function() {
+        remainingTime--;
+        updateCountdownDisplay();
+
+        if (remainingTime <= 0) {
+            clearInterval(interval);
+            document.getElementById("countdown").innerHTML = "Countdown abgelaufen";
+        }
+    }, 1000);
 }
 
-function updateTimer() {
-  console.log(totalTime);
-  
-  if (totalTime <= 0) {
-    clearInterval(timer);
-    document.getElementById('timer').innerText = 'Countdown abgelaufen!';
-  } else {
-    totalTime--;
-    
-    let days = Math.floor(totalTime / 86400);
-    let hours = Math.floor((totalTime % 86400) / 3600);
-    let minutes = Math.floor((totalTime % 3600) / 60);
-    let seconds = totalTime % 60;
-    
-    document.getElementById('timer').innerText = `${days} Tage, ${hours} Stunden, ${minutes} Minuten, ${seconds} Sekunden`;
-  }
+function stopCountdown() {
+    clearInterval(interval);
 }
 
-function resetTimer() {
-  clearInterval(timer);
-  document.getElementById('timer').innerText = '';
-  totalTime = 0;
+function resetCountdown() {
+    clearInterval(interval);
+    document.getElementById('days').value = '';
+    document.getElementById('hours').value = '';
+    document.getElementById('minutes').value = '';
+    document.getElementById('seconds').value = '';
+    document.getElementById("countdown").innerHTML = '';
 }
 
-function stopTimer() {
-  clearInterval(timer);
+function updateCountdownDisplay() {
+    var days = Math.floor(remainingTime / (24 * 60 * 60));
+    var hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+    var minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+    var seconds = remainingTime % 60;
+
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
 }
