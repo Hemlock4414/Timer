@@ -7,25 +7,30 @@
     <title>Timer</title>
 </head>
 <body>
+        
+    <header>
+        <h1>Countdown Timer</h1>    
+    </header>
+    <main>
+        <div class="container">
+            <div class="timer">
+                <input type="number" id="days" placeholder="Tage">
+                <input type="number" id="hours" placeholder="Std">
+                <input type="number" id="minutes" placeholder="Min">
+                <input type="number" id="seconds" placeholder="Sek">
+            </div>
+            <div class="buttons">
+                <button onclick="startTimer()">Start</button>
+                <button onclick="stopTimer()">Stop</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
+            <div id="display">00:00:00:00</div>
+            <div id="message">Deine Zeit ist abgelaufen!</div>
+        </div>    
+    </main>
+
+    <audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
+    
     <script src='main.js'></script>
-    
-    <h1>Countdown Timer</h1>
-    <div class="container">
-        <div class="timer">
-            <input type="number" id="days" placeholder="Tage">
-            <input type="number" id="hours" placeholder="Std">
-            <input type="number" id="minutes" placeholder="Min">
-            <input type="number" id="seconds" placeholder="Sek">
-        </div>
-        <div class="buttons">
-            <button onclick="startTimer()">Start</button>
-            <button onclick="stopTimer()">Stop</button>
-            <button onclick="resetTimer()">Reset</button>
-        </div>
-        <div id="display">00:00:00:00</div>
-        <div id="message">Der Timer ist abgelaufen!</div>
-        <audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
-    
-   
 </body>
 </html>
