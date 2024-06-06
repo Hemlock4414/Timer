@@ -4,10 +4,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     height: 100vh;
     margin: 0;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
     color: #fff;
+}
+
+h1 {
+    text-align: center;
 }
 
 .container {
@@ -20,6 +25,7 @@ body {
 
 .timer {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin-bottom: 20px;
@@ -36,6 +42,7 @@ input {
 
 .buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
 }
